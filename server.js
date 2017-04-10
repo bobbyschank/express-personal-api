@@ -12,7 +12,27 @@ app.use(bodyParser.json());
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var profile = {
+  name: 'Bob Schank',
+  origin: 'The Flour City',
+  github_link: 'https://github.com/bobbyschank',
+  github_profile_image: 'http://i.imgur.com/Z4mASEy.jpg',
+  current_city: 'Denver',
+  pets: [
+    {
+      name: 'Sheila',
+      type: 'Fish',
+      breed: 'Gold Fish'
+    },
+    {
+      name: 'Gary',
+      type: 'Snail',
+      breed: 'Yellow Belly'
+    }
+  ]
+};
+
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -38,16 +58,25 @@ app.get('/', function homepage(req, res) {
 app.get('/api', function api_index(req, res) {
   // TODO: Document all your api endpoints below
   res.json({
-    woops_i_has_forgot_to_document_all_my_endpoints: true, // CHANGE ME ;)
     message: "Welcome to my personal api! Here's what you need to know!",
-    documentation_url: "https://github.com/example-username/express_self_api/README.md", // CHANGE ME
-    base_url: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
+    documentation_url: "https://github.com/bobbyschank/express-personal-api/blob/master/README.md",
+    base_url: "http://secret-chamber-34386.herokuapp.com",
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "GET", path: "/api/profile", description: "Bob Schank 101"},
+
+      {method: "GET", path: "/api/food", description: "View all food Bob Schank can cook"},
+      {method: "GET", path: "/api/food/:id", description: "Find a single food by id"},
+      {method: "POST", path: "/api/food", description: "Add a dish to my repertoire."}
     ]
-  })
+  });
+});
+
+// 
+
+app.get('/api/profile', function api_index(req, res) {
+  // TODO: Document all your api endpoints below
+  res.json(profile);
 });
 
 /**********
