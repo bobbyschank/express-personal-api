@@ -122,7 +122,7 @@ app.post('/api/foods', function (req, res) {
 });
 
 // UPDATE
-app.post('/api/foods/:_id', function (req, res) {
+app.put('/api/foods/:_id', function (req, res) {
   console.log('req.params._id', req.params._id);
   var newFood = new db.Food({
     name: req.body.name,
