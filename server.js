@@ -146,6 +146,14 @@ app.post('/api/foods/:_id', function (req, res) {
   });
 });
 
+// DELETE
+app.delete('/api/foods/:_id', function (req, res) {
+  console.log('In delete');
+  var foodId = req.params._id;
+  db.Food.findOneAndRemove({ _id: foodId }, function (err, deletedFood) {
+    res.json(deletedFood);
+  });
+});
 
 /**********
  * SERVER *
